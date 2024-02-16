@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:quiz_app/button_quiz.dart';
 import 'package:quiz_app/data/question.dart';
 import 'package:quiz_app/question_summary.dart';
 
@@ -9,7 +9,7 @@ class ResultsScreen extends StatelessWidget {
   final List<String> chosenAnswer;
   final void Function() onResetQuiz;
 
-  List<Map<String, Object>> getSummaryData() {
+  List<Map<String, Object>> get summaryData {
     List<Map<String, Object>> summaryList = [];
 
     for (var i = 0; i < chosenAnswer.length; i++) {
@@ -26,7 +26,7 @@ class ResultsScreen extends StatelessWidget {
   @override
   Widget build(context) {
     int numOfQuestion = questions.length;
-    int numOfAnswers = getSummaryData()
+    int numOfAnswers = summaryData
         .where(
             (summary) => summary['question_answer'] == summary['user_answer'])
         .length;
@@ -60,31 +60,16 @@ class ResultsScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
-            QuestionSummary(getSummaryData()),
+            QuestionSummary(summaryData),
             const SizedBox(
               height: 30,
             ),
-            OutlinedButton.icon(
-              onPressed: () {
-                chosenAnswer.clear();
-                onResetQuiz();
-              },
-              style: OutlinedButton.styleFrom(
-                backgroundColor: Colors.white,
-              ),
-              icon: const Icon(
-                Icons.restart_alt_outlined,
-                color: Colors.green,
-              ),
-              label: Text(
-                'Restart Quiz',
-                style: GoogleFonts.lato(
-                    fontWeight: FontWeight.bold,
-                    letterSpacing: 1,
-                    color: Colors.green,
-                    fontSize: 16),
-              ),
-            ),
+            ButtonQuiz(
+              'Restart Quiz',
+              onResetQuiz,
+              icon: Icons.restart_alt_outlined,
+              color: Colors.green,
+            )
           ],
         ),
       ),

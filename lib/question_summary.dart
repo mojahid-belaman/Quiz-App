@@ -20,9 +20,12 @@ class QuestionSummary extends StatelessWidget {
                     width: 30,
                     height: 30,
                     alignment: AlignmentDirectional.center,
-                    decoration: const BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.all(Radius.circular(30))),
+                    decoration: BoxDecoration(
+                        color: data['question_answer'] == data['user_answer']
+                            ? Colors.green
+                            : Colors.red,
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(30))),
                     child: Text(
                       ((data['question_index'] as int) + 1).toString(),
                       textAlign: TextAlign.center,
