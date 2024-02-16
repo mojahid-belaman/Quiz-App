@@ -42,14 +42,14 @@ class _QuestionScreenState extends State<QuestionScreen> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 25),
-            ...currentAnswer.getShuffedList().map(
-                  (item) => AnswerButton(
-                    item,
-                    () {
-                      answerQuestion(item);
-                    },
-                  ),
-                )
+            ...currentAnswer.shuffedList.map(
+              (item) => AnswerButton(
+                item,
+                () {
+                  answerQuestion(item);
+                },
+              ),
+            )
           ],
         ),
       ),
